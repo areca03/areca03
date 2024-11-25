@@ -1,0 +1,82 @@
+import turtle
+
+# Function to set up the Turtle window
+def setup_window():
+    screen = turtle.Screen()
+    screen.bgcolor("white")  # background color of the map
+    screen.title("Campus Map Navigation")
+    return screen
+
+# Function to draw the path from the start to the destination
+def draw_path(start, destination):
+    # Reset the turtle to starting position
+    path_turtle.penup()
+    path_turtle.goto(start)
+    path_turtle.pendown()
+    path_turtle.color("blue")  # Path color
+    
+    # Draw the path (a simple line for this example)
+    path_turtle.goto(destination)
+
+# Function to display available directions
+def show_directions():
+    print("Choose one of the following directions:")
+    print("1. Communications Building to Library")
+    print("2. Library to Science Hall")
+    print("3. Science Hall to Cafeteria")
+    print("4. Cafeteria to Gym")
+    print("Enter your choice (1-4) or 'q' to quit:")
+
+# Function to handle user input and direct the turtle accordingly
+def get_direction():
+    while True:
+        show_directions()  # Show the list of directions
+        user_choice = input("Enter your choice: ")
+        
+        # Quit the program if user types 'q'
+        if user_choice.lower() == 'q':
+            print("Thank you for using the campus navigation!")
+            break
+        
+        # Handle the directions based on user choice
+        if user_choice == "1":
+            # Communications Building to Library (example coordinates)
+            start = (-200, 100)
+            destination = (100, 100)
+            draw_path(start, destination)
+        elif user_choice == "2":
+            # Library to Science Hall (example coordinates)
+            start = (100, 100)
+            destination = (200, 200)
+            draw_path(start, destination)
+        elif user_choice == "3":
+            # Science Hall to Cafeteria (example coordinates)
+            start = (200, 200)
+            destination = (50, -100)
+            draw_path(start, destination)
+        elif user_choice == "4":
+            # Cafeteria to Gym (example coordinates)
+            start = (50, -100)
+            destination = (-200, -200)
+            draw_path(start, destination)
+        else:
+            print("Invalid input. Please enter a valid number between 1 and 4 or 'q' to quit.")
+        
+        # Option to clear the screen and show the map again after each direction
+        path_turtle.clear()
+
+# Main execution function
+def main():
+    screen = setup_window()  # Set up the Turtle screen
+    global path_turtle
+    path_turtle = turtle.Turtle()
+    path_turtle.speed(3)  # Set the speed of the turtle
+    
+    # The loop will keep running until the user decides to quit
+    get_direction()
+    
+    screen.bye()  # Close the window when the program ends
+
+# Execute the program
+if __name__ == "__main__":
+    main()
